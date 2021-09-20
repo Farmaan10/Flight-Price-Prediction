@@ -7,15 +7,10 @@ import pandas as pd
 app = Flask(__name__)
 model = pickle.load(open("flight_rf.pkl", "rb"))
 
-
-
 @app.route("/")
 @cross_origin()
 def home():
     return render_template("home.html")
-
-
-
 
 @app.route("/predict", methods = ["GET", "POST"])
 @cross_origin()
@@ -356,13 +351,10 @@ def predict():
 
         output=round(prediction[0],2)
 
-        return render_template('home.html',prediction_text="Your Flight price is Rs. {}".format(output))
+        return render_template('home.html',prediction_text="Your Flight price will be around Rs. {}".format(output))
 
 
     return render_template("home.html")
-
-
-
 
 if __name__ == "__main__":
     app.run(debug=True)
